@@ -1,10 +1,12 @@
 type AssociationError = variant {
   Err : record { msg : text; ticket : Ticket };
 };
+
 type Error = variant {
   NotFound : record { msg : text };
   NotCreated : record { msg : text };
 };
+
 type Event = record {
   id : nat64;
   updated_at : opt nat64;
@@ -17,6 +19,7 @@ type Event = record {
   ticket_ids : vec nat64;
   location : text;
 };
+
 type EventPayload = record {
   date : text;
   name : text;
@@ -24,13 +27,21 @@ type EventPayload = record {
   start_time : text;
   location : text;
 };
+
 type Result = variant { Ok : Event; Err : Error };
+
 type Result_1 = variant { Ok : Ticket; Err : AssociationError };
+
 type Result_2 = variant { Ok : User; Err : Error };
+
 type Result_3 = variant { Ok : text; Err : Error };
+
 type Result_4 = variant { Ok : vec User; Err : Error };
+
 type Result_5 = variant { Ok : vec Ticket; Err : Error };
+
 type Result_6 = variant { Ok : Ticket; Err : Error };
+
 type Ticket = record {
   id : nat64;
   updated_at : opt nat64;
@@ -38,7 +49,9 @@ type Ticket = record {
   user_id : nat64;
   event_id : nat64;
 };
+
 type TicketPayload = record { user_id : nat64; event_id : nat64 };
+
 type User = record {
   id : nat64;
   event_ids : vec nat64;
@@ -49,7 +62,9 @@ type User = record {
   email : text;
   ticket_ids : vec nat64;
 };
+
 type UserPayload = record { password : text; name : text; email : text };
+
 service : {
   create_event : (EventPayload) -> (Result);
   create_ticket : (TicketPayload) -> (Result_1);
